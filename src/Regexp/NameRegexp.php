@@ -16,7 +16,7 @@ class NameRegexp
         if (preg_match_all(Regexp::NAME_REGEXP, $email, $matches)) {
             $company = $this->companyRegexp->checkCompanyFromEmail($email);
             $name = str_replace('.', ' ', $matches[0][0]);
-            $data = $this->dataPreparation($name, $company);
+            $data = $this->dataPreparation($email, $name, $company);
 
             return $data;
         } else {
@@ -24,12 +24,12 @@ class NameRegexp
         }
     }
 
-    private function dataPreparation($name, $company): array
+    private function dataPreparation($email, $name, $company): array
     {
         $nameArr = explode(' ', $name);
         $company = $nameArr[1].' '.$company;
         $initials = $nameArr[0][0].'.'.$nameArr[1][0].'.';
 
-        return ['name'=>$name, 'company'=>$company, 'initials'=>$initials];
+        return ['email'=>$email, 'name'=>$name, 'company'=>$company, 'initials'=>$initials];
     }
 }
