@@ -30,6 +30,6 @@ class NameRegexp
         $company = $nameArr[1].' '.$company;
         $initials = $nameArr[0][0].'.'.$nameArr[1][0].'.';
 
-        return [$name, $company, $initials];
+        return ['name'=>$name, 'company'=>$company, 'initials'=>$initials];
     }
 }
